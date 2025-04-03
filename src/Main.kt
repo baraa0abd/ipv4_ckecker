@@ -1,7 +1,18 @@
-fun isValidIPv4(ip: String): Boolean {
+fun isValidIPv4(s: String): Boolean {
+    val sList = s.split(".")
+    if (sList.size != 4) return false
+    for(string in sList) {
+        if(string.isEmpty()) return false
+        if(string[0] == '0' && string.length > 1) return false
+        var tempNum = 0
+        for(char in string) {
+            if(!(char.isDigit())) return false
+            tempNum = tempNum*10 + char.digitToInt()
+        }
+        if(!(tempNum in 0..255)) return false
+    }
     return true
 }
-
 fun check(name: String , result : Boolean , correctresult:Boolean){
     if (result == correctresult){
         println("sucess $name")
